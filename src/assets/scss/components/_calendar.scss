@@ -94,7 +94,6 @@
 
 .calendar__day {
 	width: calc(100% / 7);
-	/* flex: 0 0 calc(100% / 7); */
 	aspect-ratio: 1 / 1;
 	height: auto;
 	margin: 0;
@@ -118,12 +117,37 @@
 	&.calendar__day--range-start span,
 	&.calendar__day--range-end span {
 		background-color: transparent !important;
-		width: clamp(24px, 11.2vw, 60px);
-		height: clamp(24px, 11.2vw, 60px);
+		width: clamp(24px, 11vw, 60px);
+		height: clamp(24px, 11vw, 60px);
 		z-index: 2;
 		position: relative;
 		color: var(--calendar-text);
-		box-shadow: none; // убираем box-shadow у крайних точек
+		box-shadow: none;
+		position: relative;
+	}
+
+	&.calendar__day--range-start span {
+		&:before {
+			content: '';
+			position: absolute;
+			right: -10px;
+			bottom: 0;
+			width: 10px;
+			height: 100%;
+			background: var(--calendar-range);
+		}
+	}
+
+	&.calendar__day--range-end span {
+		&:before {
+			content: '';
+			position: absolute;
+			left: -10px;
+			bottom: 0;
+			width: 10px;
+			height: 100%;
+			background: var(--calendar-range);
+		}
 	}
 
 	&.calendar__day--selected span {
@@ -144,6 +168,8 @@
 		width: 100%;
 		height: auto;
 		font-size: $font-size-base;
+		position: relative;
+		z-index: 2;
 	}
 }
 
@@ -151,8 +177,6 @@
 	position: relative;
 	cursor: pointer;
 	z-index: 1;
-	/* width: clamp(24px, 11vw, 90px);
-	height: clamp(24px, 11vw, 60px); */
 	color: var(--calendar-text);
 	background: var(--calendar-range);
 	background-size: cover;
@@ -161,45 +185,12 @@
 	height: clamp(24px, 11vw, 60px);
 }
 
-.calendar__day--range-start span {
-	position: relative;
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-position: center;
-	box-shadow: 18px 0 0 0 var(--calendar-range);
-	/* &::after {
-		content: '';
-		position: absolute;
-		right: calc(-1px - clamp(8px, 2vw, 18px));
-		width: calc(clamp(8px, 2vw, 18px) + 1px);
-		top: 0;
-		bottom: 0;
-		background: var(--calendar-range);
-		z-index: 0;
-		pointer-events: none;
-	} */
-}
-
+.calendar__day--range-start span,
 .calendar__day--range-end span {
+	position: relative;
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center;
-	position: relative;
-	box-shadow: -8px 0 0 0 var(--calendar-range);
-	/* &::before {
-		content: '';
-		position: absolute;
-		left: calc(-1px - clamp(7px, 2vw, 18px));
-		width: calc(clamp(7px, 2vw, 18px) + 1px);
-		top: 0;
-		bottom: 0px;
-		background: var(--calendar-range);
-		z-index: 0;
-		@media (max-width: 640px) {
-			left: -8px;
-			width: 8px;
-		}
-	} */
 }
 
 .calendar__day--other-month {
