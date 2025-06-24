@@ -49,16 +49,28 @@ export function initCalendar() {
 				const theme = document.body.classList.contains('dark')
 					? 'dark'
 					: 'ligth'
-				// span.style.setProperty(
-				// 	'--range-svg',
-				// 	`url('ui/${theme}/num-range.svg')`
-				// )
 				span.classList.add('calendar__range-svg')
 			} else {
 				span.style.removeProperty('--range-svg')
 				span.classList.remove('calendar__range-svg')
 			}
 		})
+
+		// daysArr.forEach((day) => {
+		// 	day.style.zIndex = ''
+		// 	day.style.marginLeft = ''
+		// 	day.style.marginRight = ''
+		// })
+		// daysArr.forEach((day) => {
+		// 	if (day.classList.contains('calendar__day--range-start')) {
+		// 		day.style.zIndex = '2'
+		// 		day.style.marginLeft = '-2px' // подберите значение под ваш gap
+		// 	}
+		// 	if (day.classList.contains('calendar__day--range-end')) {
+		// 		day.style.zIndex = '2'
+		// 		day.style.marginRight = '-2px' // подберите значение под ваш gap
+		// 	}
+		// })
 	}
 
 	function clearSelection() {
