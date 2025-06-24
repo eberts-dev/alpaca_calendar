@@ -38,6 +38,27 @@ export function initCalendar() {
 				span.style.backgroundImage = `url('${getIconPath('single')}')`
 			}
 		})
+		// SVG-заливка диапазона
+		daysArr.forEach((day) => {
+			const span = day.querySelector('span')
+			if (
+				day.classList.contains('calendar__day--in-range') &&
+				!day.classList.contains('calendar__day--range-start') &&
+				!day.classList.contains('calendar__day--range-end')
+			) {
+				const theme = document.body.classList.contains('dark')
+					? 'dark'
+					: 'ligth'
+				span.style.setProperty(
+					'--range-svg',
+					`url('ui/${theme}/num-range.svg')`
+				)
+				span.classList.add('calendar__range-svg')
+			} else {
+				span.style.removeProperty('--range-svg')
+				span.classList.remove('calendar__range-svg')
+			}
+		})
 	}
 
 	function clearSelection() {
@@ -81,9 +102,7 @@ export function initCalendar() {
 			end = day
 			clearSelection()
 			const [from, to] =
-				startIndex < dayIndex
-					? [startIndex, dayIndex]
-					: [dayIndex, startIndex]
+				startIndex < dayIndex ? [startIndex, dayIndex] : [dayIndex, startIndex]
 
 			daysArr.forEach((d) => {
 				const num = getDayIndex(d)

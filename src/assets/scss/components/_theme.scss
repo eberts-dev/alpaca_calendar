@@ -1,5 +1,9 @@
 @use '@/assets/scss/utils/variables' as *;
 
+* {
+	box-sizing: border-box;
+}
+
 .calendar {
 	background: var(--calendar-bg);
 	color: var(--calendar-text);
