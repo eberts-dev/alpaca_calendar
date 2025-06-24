@@ -175,9 +175,9 @@
 		content: '';
 		position: absolute;
 		right: calc(-1 * clamp(8px, 2vw, 18px));
-		top: 0;
 		width: clamp(8px, 2vw, 18px);
-		height: 100%;
+		top: 0;
+		bottom: 0;
 		background: var(--calendar-range);
 		z-index: 0;
 		pointer-events: none;
@@ -195,7 +195,7 @@
 		left: -10px;
 		top: 0;
 		width: 10px;
-		height: 100%;
+		bottom: 0;
 		background: var(--calendar-range);
 		z-index: 0;
 		pointer-events: none;
