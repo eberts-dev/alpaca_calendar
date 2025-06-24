@@ -1,0 +1,29 @@
+@use '@/assets/scss/utils/variables' as *;
+
+.calendar {
+	background: var(--calendar-bg);
+	color: var(--calendar-text);
+}
+
+.calendar__btn--theme {
+	background: none;
+	border: none;
+	cursor: pointer;
+	color: var(--calendar-moon);
+	font-size: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: color 0.2s;
+}
+
+.calendar__btn svg,
+.calendar__icon svg {
+	fill: var(--calendar-icon);
+	transition: fill 0.2s;
+}
+
+.calendar__btn--active svg,
+.calendar__icon--active svg {
+	fill: var(--calendar-icon-active);
+}

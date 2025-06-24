@@ -1,0 +1,9 @@
+@use '@/assets/scss/utils/variables' as *;
+
+body {
+	font-family: 'Roboto', sans-serif;
+	font-optical-sizing: auto;
+	font-style: normal;
+	font-size: $font-size-base;
+	color: $color-text;
+}

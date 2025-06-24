@@ -1,0 +1,41 @@
+// цвета
+// $color-primary: #2d9cdb;
+// $color-secondary: #f7fafc;
+$color-text: #2d3748;
+// $color-border: #e2e8f0;
+// $color-btn-svg: #d9d9d9;
+$calendar-bg: #131417;
+$calendar-shadow: rgba(0, 0, 0, 0.1);
+$calendar-overlay: rgba(19, 20, 23, 0.9);
+$calendar-range-selected: #2674a1;
+$calendar-text: white;
+$hover-supported-color: #2674a120;
+$calendar-opacity: #ffffff55;
+
+// размеры
+$calendar-width: 320px;
+$calendar-min-width: 240px;
+$calendar-max-width: 560px;
+$font-size-base: 12px;
+
+// темная тема
+body.dark {
+	--calendar-moon: #b9b9ba;
+	--calendar-text: #fff;
+	--calendar-range: #2d9cdb;
+	--calendar-range-selected: #2674a1;
+	--calendar-icon: #fff;
+	--calendar-arrow: #d9d9d9;
+	--calendar-arrow-active: #494a4d;
+}
+
+body.light {
+	--calendar-moon: #fff;
+	--calendar-text: #000;
+	--calendar-range: #fff;
+	--calendar-range-selected: #b9b9ba;
+	--calendar-icon: #fff;
+	--calendar-arrow: #d9d9d9;
+	--calendar-arrow-active: #2674a120;
+	--calendar-arrow-hover: #454649;
+}

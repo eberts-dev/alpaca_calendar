@@ -1,0 +1,10 @@
+@use '@/assets/scss/utils/variables' as *;
+
+// не применяется на тач-устройствах
+@mixin hover-supported {
+	@media (hover: hover) and (pointer: fine) {
+		&:hover {
+			@content;
+		}
+	}
+}
