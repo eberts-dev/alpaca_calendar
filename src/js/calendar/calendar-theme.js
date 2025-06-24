@@ -6,9 +6,9 @@ export function getTheme() {
 export function getIconPath(type) {
 	const theme = getTheme()
 	const themeFolder = theme === 'light' ? 'ligth' : 'dark'
-	if (type === 'start') return `/ui/${themeFolder}/num_active-start.svg`
-	if (type === 'end') return `/ui/${themeFolder}/num_active-end.svg`
-	return `/ui/${themeFolder}/num_active.svg`
+	if (type === 'start') return `ui/${themeFolder}/num_active-start.svg`
+	if (type === 'end') return `ui/${themeFolder}/num_active-end.svg`
+	return `ui/${themeFolder}/num_active.svg`
 }
 
 export function setTheme(theme) {

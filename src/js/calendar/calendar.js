@@ -3,9 +3,11 @@ import { getIconPath } from '../calendar/calendar-theme.js'
 
 export function initCalendar() {
 	const days = document.querySelectorAll('.calendar__day')
+	const daysArr = Array.from(days)
+	const daysContainer = document.querySelector('.calendar__days')
 
 	function clearIcons() {
-		days.forEach((day) => {
+		daysArr.forEach((day) => {
 			const span = day.querySelector('span')
 			span.style.backgroundImage = ''
 		})
@@ -14,15 +16,17 @@ export function initCalendar() {
 	function setRangeIcons() {
 		clearIcons()
 		let hasRange = false
-		days.forEach((day) => {
+		daysArr.some((day) => {
 			if (
 				day.classList.contains('calendar__day--range-start') ||
 				day.classList.contains('calendar__day--range-end')
 			) {
 				hasRange = true
+				return true
 			}
+			return false
 		})
-		days.forEach((day) => {
+		daysArr.forEach((day) => {
 			const span = day.querySelector('span')
 			if (hasRange) {
 				if (day.classList.contains('calendar__day--range-start')) {
@@ -37,7 +41,7 @@ export function initCalendar() {
 	}
 
 	function clearSelection() {
-		days.forEach((day) => {
+		daysArr.forEach((day) => {
 			day.classList.remove(
 				'calendar__day--selected',
 				'calendar__day--in-range',
@@ -51,43 +55,44 @@ export function initCalendar() {
 		return parseInt(dayElem.dataset.index, 10)
 	}
 
-	days.forEach((day, index) => {
+	daysArr.forEach((day, index) => {
 		day.dataset.index = index
 	})
 
 	let start = null
 	let end = null
 
-	days.forEach((day) => {
-		day.addEventListener('click', () => {
-			const dayIndex = getDayIndex(day)
+	// Делегирование событий для кликов по дням
+	daysContainer.addEventListener('click', (e) => {
+		const day = e.target.closest('.calendar__day')
+		if (!day) return
+		const dayIndex = getDayIndex(day)
 
-			if (!start || (start && end)) {
-				clearSelection()
-				start = day
-				end = null
-				day.classList.add('calendar__day--selected')
-				setRangeIcons()
-			} else if (start && !end) {
-				const startIndex = getDayIndex(start)
-				if (day === start) return
+		if (!start || (start && end)) {
+			clearSelection()
+			start = day
+			end = null
+			day.classList.add('calendar__day--selected')
+			setRangeIcons()
+		} else if (start && !end) {
+			const startIndex = getDayIndex(start)
+			if (day === start) return
 
-				end = day
-				clearSelection()
-				const [from, to] =
-					startIndex < dayIndex
-						? [startIndex, dayIndex]
-						: [dayIndex, startIndex]
+			end = day
+			clearSelection()
+			const [from, to] =
+				startIndex < dayIndex
+					? [startIndex, dayIndex]
+					: [dayIndex, startIndex]
 
-				days.forEach((d) => {
-					const num = getDayIndex(d)
-					if (num === from) d.classList.add('calendar__day--range-start')
-					if (num === to) d.classList.add('calendar__day--range-end')
-					if (num > from && num < to) d.classList.add('calendar__day--in-range')
-				})
-				setRangeIcons()
-			}
-		})
+			daysArr.forEach((d) => {
+				const num = getDayIndex(d)
+				if (num === from) d.classList.add('calendar__day--range-start')
+				if (num === to) d.classList.add('calendar__day--range-end')
+				if (num > from && num < to) d.classList.add('calendar__day--in-range')
+			})
+			setRangeIcons()
+		}
 	})
 
 	const observer = new MutationObserver(() => setRangeIcons())
