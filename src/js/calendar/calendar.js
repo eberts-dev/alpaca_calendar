@@ -49,10 +49,6 @@ export function initCalendar() {
 				const theme = document.body.classList.contains('dark')
 					? 'dark'
 					: 'ligth'
-				// span.style.setProperty(
-				// 	'--range-svg',
-				// 	`url('ui/${theme}/num-range.svg')`
-				// )
 				span.classList.add('calendar__range-svg')
 			} else {
 				span.style.removeProperty('--range-svg')
